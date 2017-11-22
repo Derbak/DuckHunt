@@ -10,6 +10,32 @@
 		margin:0;
 		text-align: center;
 		}
+
+		#menu {
+			display:grid;
+			grid-template-columns: 100%;
+			grid-template-rows: 50% 30% 20%;
+			height: 100%;
+			width: 100%;
+			/**/
+			border: 4px solid brown;
+		}
+		
+		#menuItems {
+			/**/
+			border: 1px solid grey;
+		}
+
+		#menuFooter {
+			/**/
+			border: 1px solid grey;
+		}
+
+		#menuLogo {
+			/**/
+			border: 1px solid grey;
+		}
+
 		#screen {
 			width: calc(4 * 90vh/3);
 			height: calc(3 * 90vw/4);
@@ -25,10 +51,34 @@
 		//
 		var screen = document.body.insertBefore(document.createElement('div'), document.body.firstChild);
 		screen.id = 'screen';
-		console.log(screen);
+
+		function showMenu(){
+			screen.innerHTML = '';
+
+			var menu = document.createElement('div'); 
+			menu.id = 'menu';
+			
+			var menuLogo = document.createElement('div'); 
+			menuLogo.id = 'menuLogo';
+			
+			var menuItems = document.createElement('div'); 
+			menuItems.id = 'menuItems';
+			
+			var menuFooter = document.createElement('div'); 
+			menuFooter.id = 'menuFooter';
+
+			screen.appendChild(menu);
+			
+			menu.appendChild(menuLogo);
+			menu.appendChild(menuItems);
+			menu.appendChild(menuFooter);
+			
+			
+		}
+		document.onload = showMenu();
 	</script>
+
 	<noscript>JavaScript is disabled in your browser. The game is impossible.</noscript>
-	
 </body>
 
 </html>

@@ -10,14 +10,25 @@
 		margin:0;
 		text-align: center;
 		}
+		#screen {
+			width: calc(4 * 90vh/3);
+			height: calc(3 * 90vw/4);
+			max-width: 90vw;
+			max-height: 90vh;
+			margin: 5vh auto;
+		}
 	</style>
 </head>
 
 <body>
-	JavaScript is disabled in your browser. The game is impossible.
 	<script>
-		document.body.innerHTML = 'Hello, world!';
+		//
+		var screen = document.body.insertBefore(document.createElement('div'), document.body.firstChild);
+		screen.id = 'screen';
+		console.log(screen);
 	</script>
+	<noscript>JavaScript is disabled in your browser. The game is impossible.</noscript>
+	
 </body>
 
 </html>

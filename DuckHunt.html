@@ -12,7 +12,7 @@
 		}
 
 		#menu {
-			display:grid;
+			display: grid;
 			grid-template-columns: 100%;
 			grid-template-rows: 50% 30% 20%;
 			height: 100%;
@@ -20,7 +20,7 @@
 			/**/
 			border: 4px solid brown;
 		}
-		
+
 		#menuItems {
 			/**/
 			border: 1px solid grey;
@@ -32,8 +32,58 @@
 		}
 
 		#menuLogo {
-			/**/
-			border: 1px solid grey;
+			display: grid;
+			grid-column-gap: 4%;
+			grid-row-gap: 4%;
+			grid-template-columns: 15% 15% 15% 15% 15%;
+			grid-template-rows: 40% 2% 40%;
+			grid-template-areas:
+			". letter1 letter2 letter3 letter4"
+			"line line line line line"
+			"letter5 letter6 letter7 letter8 .";
+			padding-left:9%;
+			padding-top:9%;
+		}
+
+		.menuLogoLetter {
+			background: #60cfe3;
+		}
+
+		.menuLogoLetter#letter1 {
+			grid-area: letter1;
+		}
+		
+		.menuLogoLetter#letter2 {
+			grid-area: letter2;
+		}
+		
+		.menuLogoLetter#letter3 {
+			grid-area: letter3;
+		}
+		
+		.menuLogoLetter#letter4 {
+			grid-area: letter4;
+		}
+		
+		.menuLogoLetter#letter5 {
+			grid-area: letter5;
+		}
+		
+		.menuLogoLetter#letter6 {
+			grid-area: letter6;
+		}
+		
+		.menuLogoLetter#letter7 {
+			grid-area: letter7;
+		}
+		
+		.menuLogoLetter#letter8 {
+			grid-area: letter8;
+		}
+
+		#menuLogoLine {
+			background: #ff9f00;
+			grid-area: line;
 		}
 
 		#screen {
@@ -66,10 +116,24 @@
 			
 			var menuFooter = document.createElement('div'); 
 			menuFooter.id = 'menuFooter';
+			
+			//var menuLogoLetter = document.createElement('div'); 
+			//menuLogoLetter.className = 'menuLogoLetter';
 
 			screen.appendChild(menu);
 			
 			menu.appendChild(menuLogo);
+			var gameName = ['D','U','C','K','H','U','N','T'];
+			for (var i=0;i < gameName.length;i++) {
+				menuLogoLetter = document.createElement('div');
+				menuLogoLetter.id = 'letter'+(i+1);
+				menuLogoLetter.classList.add('menuLogoLetter');
+				menuLogoLetter.classList.add(gameName[i]);
+				menuLogo.appendChild(menuLogoLetter);
+			}
+			menuLogoLine = menuLogo.insertBefore(document.createElement('div'), menuLogo.children[4]);
+			menuLogoLine.id = 'menuLogoLine';
+
 			menu.appendChild(menuItems);
 			menu.appendChild(menuFooter);
 			

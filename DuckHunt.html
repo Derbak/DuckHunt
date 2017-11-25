@@ -33,32 +33,36 @@
 
 		#menuLogo {
 			display: grid;
-			grid-column-gap: 4%;
-			grid-row-gap: 4%;
-			grid-template-columns: 15% 15% 15% 15% 15%;
-			grid-template-rows: 40% 2% 40%;
+			grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+			grid-template-rows: 45% 1fr 45%;
 			grid-template-areas:
-			". letter1 letter2 letter3 letter4"
+			"letter1 letter2 letter3 letter4 ."
 			"line line line line line"
-			"letter5 letter6 letter7 letter8 .";
-			padding-left:9%;
-			padding-top:9%;
+			". letter5 letter6 letter7 letter8";
+			justify-items: center;
+			align-items: center;
+			padding: 4% 12%;
 		}
 
 		.menuLogoLetter {
 			background: #60cfe3;
+			width: 76%;
+			height: 100%;
 		}
 
 		.menuLogoLetter#letter1 {
 			grid-area: letter1;
+			border-radius: 0 25% 25% 0;
 		}
 		
 		.menuLogoLetter#letter2 {
 			grid-area: letter2;
+			border-radius: 0 0 25% 25%;
 		}
 		
 		.menuLogoLetter#letter3 {
 			grid-area: letter3;
+			border-radius: 25%;
 		}
 		
 		.menuLogoLetter#letter4 {
@@ -71,6 +75,7 @@
 		
 		.menuLogoLetter#letter6 {
 			grid-area: letter6;
+			border-radius: 0 0 25% 25%;
 		}
 		
 		.menuLogoLetter#letter7 {
@@ -84,6 +89,8 @@
 		#menuLogoLine {
 			background: #ff9f00;
 			grid-area: line;
+			width: 95%;
+			height: 15%;
 		}
 
 		#screen {

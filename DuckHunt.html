@@ -161,10 +161,10 @@
 		#RecessK {
 			position: relative;
 			background: #000;
-			width: 23%;
-			height: 23%;
-			top: 39%;
-			left: 77%;
+			width: 20%;
+			height: 30%;
+			top: 30%;
+			left: 80%;
 		}
 		
 		#RecessK::before {
@@ -209,8 +209,35 @@
 			left: 55%;
 		}
 		
-		.N {
-			
+		.N::before {
+			content: "";
+			position: absolute;
+			background: #000;
+			width: 23%;
+			height: 41%;
+			top: 59%;
+			left: 55%;
+			border-top-right-radius: 80% 50%;
+		}
+		
+		#RecessN {
+			position: relative;
+			background: #000;
+			width: 23%;
+			height: 35%;
+			top: 0;
+			left: 55%;
+		}
+		
+		#RecessN::before {
+			content: "";
+			position: absolute;
+			background: #60cfe3;
+			width: 100%;
+			height: 40%;
+			bottom: 0;
+			left: 0;
+			border-top-right-radius: 90% 70%;
 		}
 		
 		.T::before {
@@ -288,6 +315,11 @@
 					var RecessK = document.createElement('div');
 					RecessK.id = 'RecessK';
 					menuLogoLetter.appendChild(RecessK);
+				}
+				if (i == 6) {
+					var RecessN = document.createElement('div');
+					RecessN.id = 'RecessN';
+					menuLogoLetter.appendChild(RecessN);
 				}
 			}
 			

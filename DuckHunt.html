@@ -136,8 +136,57 @@
 			left: 77%;
 		}
 		
-		.K {
-			
+		.K::before {
+			content: "";
+			position: absolute;
+			background: #000;
+			width: 23%;
+			height: 41%;
+			top: 0;
+			left: 55%;
+			border-bottom-right-radius: 80% 50%;
+		}
+		
+		.K::after {
+			content: "";
+			position: absolute;
+			background: #000;
+			width: 23%;
+			height: 41%;
+			top: 59%;
+			left: 55%;
+			border-top-right-radius: 80% 50%;
+		}
+		
+		#RecessK {
+			position: relative;
+			background: #000;
+			width: 23%;
+			height: 23%;
+			top: 39%;
+			left: 77%;
+		}
+		
+		#RecessK::before {
+			content: "";
+			position: absolute;
+			background: #60cfe3;
+			width: 100%;
+			height: 50%;
+			top: 0;
+			left: 0;
+			border-radius: 0 0 100% 0;
+		}
+		
+		#RecessK::after {
+			content: "";
+			position: absolute;
+			background: #60cfe3;
+			width: 100%;
+			height: 50%;
+			top: 50%;
+			left: 0;
+			border-radius: 0 100% 0 0;
 		}
 		
 		.H::before {
@@ -235,8 +284,14 @@
 				menuLogoLetter.classList.add('menuLogoLetter');
 				menuLogoLetter.classList.add(gameName[i]);
 				menuLogo.appendChild(menuLogoLetter);
+				if (i == 3) {
+					var RecessK = document.createElement('div');
+					RecessK.id = 'RecessK';
+					menuLogoLetter.appendChild(RecessK);
+				}
 			}
-			menuLogoLine = menuLogo.insertBefore(document.createElement('div'), menuLogo.children[4]);
+			
+			var menuLogoLine = menuLogo.insertBefore(document.createElement('div'), menuLogo.children[4]);
 			menuLogoLine.id = 'menuLogoLine';
 
 			menu.appendChild(menuItems);

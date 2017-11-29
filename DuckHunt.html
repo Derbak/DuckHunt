@@ -22,8 +22,59 @@
 		}
 
 		#menuItems {
+			display: grid;
+			grid-template-columns: 100%;
+			grid-template-rows: repeat(3, 1fr);
+			color: #ff9f00;
+			font-family: monospace, arial;
+			font-kerning: normal;
+			font-weight: 900;
+			white-space: nowrap;
+			position: relative;
 			/**/
 			border: 1px solid grey;
+		}
+		
+		#gameA::before {
+			content: "GAME A";
+			position: absolute;
+			right: 59%;
+			transform: scaleX(1.5);
+		}
+		
+		#gameA::after {
+			content: "1 DUCK";
+			position: absolute;
+			left: 56%;
+			transform: scaleX(1.5);
+		}
+		
+		#gameB::before {
+			content: "GAME B";
+			position: absolute;
+			right: 59%;
+			transform: scaleX(1.5);
+		}
+		
+		#gameB::after {
+			content: "2 DUCK";
+			position: absolute;
+			left: 56%;
+			transform: scaleX(1.5);
+		}
+		
+		#gameC::before {
+			content: "GAME C";
+			position: absolute;
+			right: 59%;
+			transform: scaleX(1.5);
+		}
+		
+		#gameC::after {
+			content: "CLAY SHOOTING";
+			position: absolute;
+			left: 59%;
+			transform: scaleX(1.5);
 		}
 
 		#menuFooter {
@@ -268,8 +319,10 @@
 		}
 
 		#screen {
-			width: calc(4 * 90vh/3);
-			height: calc(3 * 90vw/4);
+			/*width: calc(4 * 90vh/3);
+			height: calc(3 * 90vw/4);*/
+			width: 120vh;
+			height: 67.5vw;
 			max-width: 90vw;
 			max-height: 90vh;
 			margin: 5vh auto;
@@ -297,15 +350,13 @@
 			
 			var menuFooter = document.createElement('div'); 
 			menuFooter.id = 'menuFooter';
-			
-			//var menuLogoLetter = document.createElement('div'); 
-			//menuLogoLetter.className = 'menuLogoLetter';
 
 			screen.appendChild(menu);
-			
+
+			//Render Logo
 			menu.appendChild(menuLogo);
 			var gameName = ['D','U','C','K','H','U','N','T'];
-			for (var i=0;i < gameName.length;i++) {
+			for (var i=0; i < gameName.length; i++) {
 				menuLogoLetter = document.createElement('div');
 				menuLogoLetter.id = 'letter'+(i+1);
 				menuLogoLetter.classList.add('menuLogoLetter');
@@ -326,12 +377,30 @@
 			var menuLogoLine = menuLogo.insertBefore(document.createElement('div'), menuLogo.children[4]);
 			menuLogoLine.id = 'menuLogoLine';
 
+			//Render Menu Items
 			menu.appendChild(menuItems);
+			
+			var gameType = ['A', 'B', 'C'];
+			for (i=0; i < gameType.length; i++) {
+				var gameListElement = document.createElement('div'); 
+				gameListElement.id = 'game' + gameType[i];
+				menuItems.appendChild(gameListElement);
+				menuItems.style.fontSize = (menuItems.offsetWidth/28 + 'px');
+			}
+
+			
 			menu.appendChild(menuFooter);
 			
-			
+
 		}
 		document.onload = showMenu();
+		
+		window.onresize = function () {
+			console.log('Размер окна был изменен!');
+			
+			menuItems.style.fontSize = (menuItems.offsetWidth/28 + 'px');
+		}
+		
 	</script>
 
 	<noscript>JavaScript is disabled in your browser. The game is impossible.</noscript>

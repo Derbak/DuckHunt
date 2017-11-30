@@ -17,6 +17,9 @@
 			grid-template-rows: 50% 30% 20%;
 			height: 100%;
 			width: 100%;
+			font-family: monospace, arial;
+			font-kerning: normal;
+			font-weight: 900;
 			/**/
 			border: 4px solid brown;
 		}
@@ -26,11 +29,9 @@
 			grid-template-columns: 100%;
 			grid-template-rows: repeat(3, 1fr);
 			color: #ff9f00;
-			font-family: monospace, arial;
-			font-kerning: normal;
-			font-weight: 900;
 			white-space: nowrap;
 			position: relative;
+			align-items: start;
 			/**/
 			border: 1px solid grey;
 		}
@@ -78,8 +79,25 @@
 		}
 
 		#menuFooter {
+			display: grid;
+			grid-template-columns: 100%;
+			grid-template-rows: repeat(2, 1fr);
+			white-space: nowrap;
+			position: relative;
+			align-items: center;
 			/**/
 			border: 1px solid grey;
+		}
+		
+		#menuFooterScore {
+			transform: scaleX(1.4);
+			color: #7BE14F;
+		}
+		
+		#menuFooterCopy {
+			transform: scaleX(1.5);
+			color: #fff;
+			
 		}
 
 		#menuLogo {
@@ -382,23 +400,35 @@
 			
 			var gameType = ['A', 'B', 'C'];
 			for (i=0; i < gameType.length; i++) {
-				var gameListElement = document.createElement('div'); 
+				var gameListElement = document.createElement('div');
 				gameListElement.id = 'game' + gameType[i];
 				menuItems.appendChild(gameListElement);
-				menuItems.style.fontSize = (menuItems.offsetWidth/28 + 'px');
 			}
 
-			
+			//Render footer
+			var score = 12000;
 			menu.appendChild(menuFooter);
 			
-
+			var menuFooterScore = document.createElement('div');
+			menuFooterScore.id = 'menuFooterScore';
+			menuFooter.appendChild(menuFooterScore);
+			menuFooterScore.innerHTML = 'TOP SCORE = ' + score;
+			
+			var menuFooterCopy = document.createElement('div');
+			menuFooterCopy.id = 'menufooterCopy';
+			menuFooter.appendChild(menuFooterCopy);
+			menuFooterCopy.innerHTML = 'FREE CLONE &copy;1984 NINTENDO CO., LTD.';
+			
+			
+			menu.style.fontSize = (menuItems.offsetWidth/28 + 'px');
 		}
+		
+		
+		
 		document.onload = showMenu();
 		
 		window.onresize = function () {
-			console.log('Размер окна был изменен!');
-			
-			menuItems.style.fontSize = (menuItems.offsetWidth/28 + 'px');
+			menu.style.fontSize = (menuItems.offsetWidth/28 + 'px');
 		}
 		
 	</script>

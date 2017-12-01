@@ -35,47 +35,47 @@
 			/**/
 			border: 1px solid grey;
 		}
-		
+
 		#gameA::before {
 			content: "GAME A";
 			position: absolute;
 			right: 59%;
-			transform: scaleX(1.5);
+			transform: scaleX(1.4);
 		}
-		
+
 		#gameA::after {
 			content: "1 DUCK";
 			position: absolute;
 			left: 56%;
-			transform: scaleX(1.5);
+			transform: scaleX(1.4);
 		}
-		
+
 		#gameB::before {
 			content: "GAME B";
 			position: absolute;
 			right: 59%;
-			transform: scaleX(1.5);
+			transform: scaleX(1.4);
 		}
-		
+
 		#gameB::after {
 			content: "2 DUCK";
 			position: absolute;
 			left: 56%;
-			transform: scaleX(1.5);
+			transform: scaleX(1.4);
 		}
-		
+
 		#gameC::before {
 			content: "GAME C";
 			position: absolute;
 			right: 59%;
-			transform: scaleX(1.5);
+			transform: scaleX(1.4);
 		}
-		
+
 		#gameC::after {
 			content: "CLAY SHOOTING";
 			position: absolute;
 			left: 59%;
-			transform: scaleX(1.5);
+			transform: scaleX(1.4);
 		}
 
 		#menuFooter {
@@ -88,16 +88,16 @@
 			/**/
 			border: 1px solid grey;
 		}
-		
+
 		#menuFooterScore {
 			transform: scaleX(1.4);
 			color: #7BE14F;
 		}
-		
+
 		#menuFooterCopy {
-			transform: scaleX(1.5);
+			transform: scaleX(1.4);
 			color: #fff;
-			
+
 		}
 
 		#menuLogo {
@@ -123,31 +123,31 @@
 		.menuLogoLetter#letter1 {
 			grid-area: letter1;
 		}
-		
+
 		.menuLogoLetter#letter2 {
 			grid-area: letter2;
 		}
-		
+
 		.menuLogoLetter#letter3 {
 			grid-area: letter3;
 		}
-		
+
 		.menuLogoLetter#letter4 {
 			grid-area: letter4;
 		}
-		
+
 		.menuLogoLetter#letter5 {
 			grid-area: letter5;
 		}
-		
+
 		.menuLogoLetter#letter6 {
 			grid-area: letter6;
 		}
-		
+
 		.menuLogoLetter#letter7 {
 			grid-area: letter7;
 		}
-		
+
 		.menuLogoLetter#letter8 {
 			grid-area: letter8;
 		}
@@ -155,7 +155,7 @@
 		.D {
 			border-radius: 0 25% 25% 0;
 		}
-		
+
 		.D::before {
 			content: "";
 			position: absolute;
@@ -166,7 +166,7 @@
 			left: 55%;
 			border-radius: 35%;
 		}
-		
+
 			.U {
 			border-radius: 0 0 25% 25%;
 		}
@@ -180,7 +180,7 @@
 			left: 55%;
 			border-radius: 0 0 30% 30%;
 		}
-		
+
 			.C {
 			border-radius: 25%;
 		}
@@ -194,7 +194,7 @@
 			left: 55%;
 			border-radius: 35%;
 		}
-		
+
 		.C::after {
 			content: "";
 			position: absolute;
@@ -204,7 +204,7 @@
 			top: 34.5%;
 			left: 77%;
 		}
-		
+
 		.K::before {
 			content: "";
 			position: absolute;
@@ -215,7 +215,7 @@
 			left: 55%;
 			border-bottom-right-radius: 80% 50%;
 		}
-		
+
 		.K::after {
 			content: "";
 			position: absolute;
@@ -226,7 +226,7 @@
 			left: 55%;
 			border-top-right-radius: 80% 50%;
 		}
-		
+
 		#RecessK {
 			position: relative;
 			background: #000;
@@ -235,7 +235,7 @@
 			top: 30%;
 			left: 80%;
 		}
-		
+
 		#RecessK::before {
 			content: "";
 			position: absolute;
@@ -246,7 +246,7 @@
 			left: 0;
 			border-radius: 0 0 100% 0;
 		}
-		
+
 		#RecessK::after {
 			content: "";
 			position: absolute;
@@ -257,7 +257,7 @@
 			left: 0;
 			border-radius: 0 100% 0 0;
 		}
-		
+
 		.H::before {
 			content: "";
 			position: absolute;
@@ -267,7 +267,7 @@
 			top: 0;
 			left: 55%;
 		}
-		
+
 		.H::after {
 			content: "";
 			position: absolute;
@@ -277,7 +277,7 @@
 			top: 59%;
 			left: 55%;
 		}
-		
+
 		.N::before {
 			content: "";
 			position: absolute;
@@ -288,7 +288,7 @@
 			left: 55%;
 			border-top-right-radius: 80% 50%;
 		}
-		
+
 		#RecessN {
 			position: relative;
 			background: #000;
@@ -297,7 +297,7 @@
 			top: 0;
 			left: 55%;
 		}
-		
+
 		#RecessN::before {
 			content: "";
 			position: absolute;
@@ -308,7 +308,7 @@
 			left: 0;
 			border-top-right-radius: 90% 70%;
 		}
-		
+
 		.T::before {
 			content: "";
 			position: absolute;
@@ -318,7 +318,7 @@
 			top: 20%;
 			left: 0;
 		}
-		
+
 		.T::after {
 			content: "";
 			position: absolute;
@@ -357,16 +357,16 @@
 		function showMenu(){
 			screen.innerHTML = '';
 
-			var menu = document.createElement('div'); 
+			var menu = document.createElement('div');
 			menu.id = 'menu';
-			
-			var menuLogo = document.createElement('div'); 
+
+			var menuLogo = document.createElement('div');
 			menuLogo.id = 'menuLogo';
-			
-			var menuItems = document.createElement('div'); 
+
+			var menuItems = document.createElement('div');
 			menuItems.id = 'menuItems';
-			
-			var menuFooter = document.createElement('div'); 
+
+			var menuFooter = document.createElement('div');
 			menuFooter.id = 'menuFooter';
 
 			screen.appendChild(menu);
@@ -391,13 +391,13 @@
 					menuLogoLetter.appendChild(RecessN);
 				}
 			}
-			
+
 			var menuLogoLine = menuLogo.insertBefore(document.createElement('div'), menuLogo.children[4]);
 			menuLogoLine.id = 'menuLogoLine';
 
 			//Render Menu Items
 			menu.appendChild(menuItems);
-			
+
 			var gameType = ['A', 'B', 'C'];
 			for (i=0; i < gameType.length; i++) {
 				var gameListElement = document.createElement('div');
@@ -408,29 +408,29 @@
 			//Render footer
 			var score = 12000;
 			menu.appendChild(menuFooter);
-			
+
 			var menuFooterScore = document.createElement('div');
 			menuFooterScore.id = 'menuFooterScore';
 			menuFooter.appendChild(menuFooterScore);
 			menuFooterScore.innerHTML = 'TOP SCORE = ' + score;
-			
+
 			var menuFooterCopy = document.createElement('div');
 			menuFooterCopy.id = 'menufooterCopy';
 			menuFooter.appendChild(menuFooterCopy);
 			menuFooterCopy.innerHTML = 'FREE CLONE &copy;1984 NINTENDO CO., LTD.';
-			
-			
+
+
 			menu.style.fontSize = (menuItems.offsetWidth/28 + 'px');
 		}
-		
-		
-		
+
+
+
 		document.onload = showMenu();
-		
+
 		window.onresize = function () {
 			menu.style.fontSize = (menuItems.offsetWidth/28 + 'px');
 		}
-		
+
 	</script>
 
 	<noscript>JavaScript is disabled in your browser. The game is impossible.</noscript>

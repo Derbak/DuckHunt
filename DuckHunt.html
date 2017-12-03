@@ -83,15 +83,20 @@
 			align-items: center;
 		}
 
-		#menuFooterScore {
-			transform: scaleX(1.4);
+		#menuFooterScore::before {
+			content: attr(data-before);
 			color: #7BE14F;
+			position:absolute;
+			left: 31%;
+			transform: scaleX(1.4);
 		}
 
-		#menuFooterCopy {
-			transform: scaleX(1.4);
+		#menuFooterCopy::before {
+			content: "©1984 NINTENDO CO., LTD.";
 			color: #fff;
-
+			position:absolute;
+			left: 28%;
+			transform: scaleX(1.4);
 		}
 
 		#menuLogo {
@@ -411,15 +416,29 @@
 			var menuFooterScore = document.createElement('div');
 			menuFooterScore.id = 'menuFooterScore';
 			menuFooter.appendChild(menuFooterScore);
-			menuFooterScore.innerHTML = 'TOP SCORE = ' + topScore;
+			menuFooterScore.dataset.before = 'TOP SCORE = ' + topScore;
 
 			var menuFooterCopy = document.createElement('div');
-			menuFooterCopy.id = 'menufooterCopy';
+			menuFooterCopy.id = 'menuFooterCopy';
 			menuFooter.appendChild(menuFooterCopy);
-			menuFooterCopy.innerHTML = 'FREE CLONE &copy;1984 NINTENDO CO., LTD.';
 
 
 			menu.style.fontSize = (menuItems.offsetWidth/28 + 'px');
+
+			var selectedGame = 1;
+
+			switch (selectedGame) {
+				case 1:
+
+				break;
+
+				case 2:
+
+				break;
+				case 3:
+
+				break;
+			}
 		}
 
 

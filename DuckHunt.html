@@ -342,7 +342,10 @@
 
 <body>
 	<script>
-		//
+
+		var score = 0;
+		var topScore = (score > topScore) ? score : 12000;
+
 		var screen = document.body.insertBefore(document.createElement('div'), document.body.firstChild);
 		screen.id = 'screen';
 
@@ -398,13 +401,13 @@
 			}
 
 			//Render footer
-			var score = 12000;
+
 			menu.appendChild(menuFooter);
 
 			var menuFooterScore = document.createElement('div');
 			menuFooterScore.id = 'menuFooterScore';
 			menuFooter.appendChild(menuFooterScore);
-			menuFooterScore.innerHTML = 'TOP SCORE = ' + score;
+			menuFooterScore.innerHTML = 'TOP SCORE = ' + topScore;
 
 			var menuFooterCopy = document.createElement('div');
 			menuFooterCopy.id = 'menufooterCopy';

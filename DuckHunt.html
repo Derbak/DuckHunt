@@ -455,6 +455,10 @@ function showMenu() {
 	gameC.id = 'gameC';
 	menuItems.appendChild(gameC);
 
+	menuCursor = document.createElement('div');
+	menuCursor.id = 'menuCursor';
+	gameA.appendChild(menuCursor);
+
 	//Render menu footer
 	menu.appendChild(menuFooter);
 
@@ -468,6 +472,7 @@ function showMenu() {
 	menuFooter.appendChild(menuFooterCopy);
 
 	menu.style.fontSize = (menuItems.offsetWidth/28 + 'px');
+	console.log('1 '+selectedGame);
 	selectGame(selectedGame);
 }
 
@@ -476,17 +481,13 @@ function showMenu() {
 /*------------------------*/
 
 function selectGame(selectedGame) {
+	console.log('2 '+selectedGame);
 	var menuCursor = document.getElementById('menuCursor');
-	if (menuCursor == null) {
-		menuCursor = document.createElement('div');
-		menuCursor.id = 'menuCursor';
-	}
 	var gameA = document.getElementById('gameA');
 	var gameB = document.getElementById('gameB');
 	var gameC = document.getElementById('gameC');
 	switch (selectedGame) {
 		case 1:
-		gameA.appendChild(menuCursor);
 			menuCursor.parentNode.removeChild(menuCursor);
 			gameA.appendChild(menuCursor);
 		break;
@@ -504,7 +505,8 @@ function selectGame(selectedGame) {
 }
 
 function playGame(selectedGame) {
-	setTimeout(alert ('Not released yet'), 2000);
+	screen.innerHTML = '';
+	setTimeout(alert ('Not released yet #' + selectedGame), 2000);
 	showMenu();
 }
 /*------------------------*/
@@ -535,6 +537,7 @@ document.onkeyup = function(e) {
 		break;
 
 		case 'Escape':
+			selectedGame = 1;
 			showMenu();
 		break;
 

@@ -384,155 +384,170 @@
 <body>
 	<script>
 
-		var score = 0;
-		var topScore = (score > topScore) ? score : 12000;
-		var selectedGame = 1;
+var screen = document.body.insertBefore(document.createElement('div'), document.body.firstChild);
+screen.id = 'screen';
 
-		var screen = document.body.insertBefore(document.createElement('div'), document.body.firstChild);
-		screen.id = 'screen';
+/*------------------------------------*/
+/*-----Declaring global variables-----*/
+/*------------------------------------*/
+var score = 0;
+var topScore = (score > topScore) ? score : 12000;
+var selectedGame = 1;
+var currentLocation = '';
 
-//Show Menu (Reset)
-		function showMenu(){
-			screen.innerHTML = '';
+/*------------------------------------------*/
+/*-----Functions visual objects render -----*/
+/*------------------------------------------*/
 
-			var menu = document.createElement('div');
-			menu.id = 'menu';
+function showMenu() {
+	screen.innerHTML = '';
 
-			var menuLogo = document.createElement('div');
-			menuLogo.id = 'menuLogo';
+	var menu = document.createElement('div');
+	menu.id = 'menu';
 
-			var menuItems = document.createElement('div');
-			menuItems.id = 'menuItems';
+	var menuLogo = document.createElement('div');
+	menuLogo.id = 'menuLogo';
 
-			var menuFooter = document.createElement('div');
-			menuFooter.id = 'menuFooter';
+	var menuItems = document.createElement('div');
+	menuItems.id = 'menuItems';
 
-			screen.appendChild(menu);
+	var menuFooter = document.createElement('div');
+	menuFooter.id = 'menuFooter';
 
-			//Render Logo
-			menu.appendChild(menuLogo);
-			var gameName = ['D','U','C','K','H','U','N','T'];
-			for (var i=0; i < gameName.length; i++) {
-				menuLogoLetter = document.createElement('div');
-				menuLogoLetter.id = 'letter'+(i+1);
-				menuLogoLetter.classList.add('menuLogoLetter');
-				menuLogoLetter.classList.add(gameName[i]);
-				menuLogo.appendChild(menuLogoLetter);
-				if (i == 3) {
-					var RecessK = document.createElement('div');
-					RecessK.id = 'RecessK';
-					menuLogoLetter.appendChild(RecessK);
-				}
-				if (i == 6) {
-					var RecessN = document.createElement('div');
-					RecessN.id = 'RecessN';
-					menuLogoLetter.appendChild(RecessN);
-				}
-			}
+	screen.appendChild(menu);
 
-			var menuLogoLine = menuLogo.insertBefore(document.createElement('div'), menuLogo.children[4]);
-			menuLogoLine.id = 'menuLogoLine';
+	//Render Logo
+	menu.appendChild(menuLogo);
+	var gameName = ['D','U','C','K','H','U','N','T'];
+	for (var i=0; i < gameName.length; i++) {
+		menuLogoLetter = document.createElement('div');
+		menuLogoLetter.id = 'letter'+(i+1);
+		menuLogoLetter.classList.add('menuLogoLetter');
+		menuLogoLetter.classList.add(gameName[i]);
+		menuLogo.appendChild(menuLogoLetter);
+		if (i == 3) {
+			var RecessK = document.createElement('div');
+			RecessK.id = 'RecessK';
+			menuLogoLetter.appendChild(RecessK);
+		}
+		if (i == 6) {
+			var RecessN = document.createElement('div');
+			RecessN.id = 'RecessN';
+			menuLogoLetter.appendChild(RecessN);
+		}
+	}
 
-			//Render Menu Items
-			menu.appendChild(menuItems);
+	var menuLogoLine = menuLogo.insertBefore(document.createElement('div'), menuLogo.children[4]);
+	menuLogoLine.id = 'menuLogoLine';
 
-			gameA = document.createElement('div');
-			gameA.id = 'gameA';
-			menuItems.appendChild(gameA);
+	//Render Menu Items
+	menu.appendChild(menuItems);
 
-			gameB = document.createElement('div');
-			gameB.id = 'gameB';
-			menuItems.appendChild(gameB);
+	gameA = document.createElement('div');
+	gameA.id = 'gameA';
+	menuItems.appendChild(gameA);
 
-			gameC = document.createElement('div');
-			gameC.id = 'gameC';
-			menuItems.appendChild(gameC);
+	gameB = document.createElement('div');
+	gameB.id = 'gameB';
+	menuItems.appendChild(gameB);
 
-			var menuCursor = document.createElement('div');
-			menuCursor.id = 'menuCursor';
+	gameC = document.createElement('div');
+	gameC.id = 'gameC';
+	menuItems.appendChild(gameC);
+
+	//Render menu footer
+	menu.appendChild(menuFooter);
+
+	var menuFooterScore = document.createElement('div');
+	menuFooterScore.id = 'menuFooterScore';
+	menuFooter.appendChild(menuFooterScore);
+	menuFooterScore.dataset.before = 'TOP SCORE = ' + topScore;
+
+	var menuFooterCopy = document.createElement('div');
+	menuFooterCopy.id = 'menuFooterCopy';
+	menuFooter.appendChild(menuFooterCopy);
+
+	menu.style.fontSize = (menuItems.offsetWidth/28 + 'px');
+	selectGame(selectedGame);
+}
+
+/*------------------------*/
+/*-----Player actions-----*/
+/*------------------------*/
+
+function selectGame(selectedGame) {
+	var menuCursor = document.getElementById('menuCursor');
+	if (menuCursor == null) {
+		menuCursor = document.createElement('div');
+		menuCursor.id = 'menuCursor';
+	}
+	var gameA = document.getElementById('gameA');
+	var gameB = document.getElementById('gameB');
+	var gameC = document.getElementById('gameC');
+	switch (selectedGame) {
+		case 1:
+		gameA.appendChild(menuCursor);
+			menuCursor.parentNode.removeChild(menuCursor);
 			gameA.appendChild(menuCursor);
+		break;
 
-			//Render footer
-			menu.appendChild(menuFooter);
+		case 2:
+			menuCursor.parentNode.removeChild(menuCursor);
+			gameB.appendChild(menuCursor);
+		break;
 
-			var menuFooterScore = document.createElement('div');
-			menuFooterScore.id = 'menuFooterScore';
-			menuFooter.appendChild(menuFooterScore);
-			menuFooterScore.dataset.before = 'TOP SCORE = ' + topScore;
+		case 3:
+			menuCursor.parentNode.removeChild(menuCursor);
+			gameC.appendChild(menuCursor);
+		break;
+	}
+}
 
-			var menuFooterCopy = document.createElement('div');
-			menuFooterCopy.id = 'menuFooterCopy';
-			menuFooter.appendChild(menuFooterCopy);
+function playGame(selectedGame) {
+	setTimeout(alert ('Not released yet'), 2000);
+	showMenu();
+}
+/*------------------------*/
+/*-----Event handling-----*/
+/*------------------------*/
 
-			menu.style.fontSize = (menuItems.offsetWidth/28 + 'px');
-		}
+document.onload = showMenu();
 
-//Select Game
-		function selectGame(selectedGame) {
 
-			var menuCursor = document.getElementById('menuCursor');
-			var gameA = document.getElementById('gameA');
-			var gameB = document.getElementById('gameB');
-			var gameC = document.getElementById('gameC');
-			switch (selectedGame) {
-				case 1:
-				gameA.appendChild(menuCursor);
-					menuCursor.parentNode.removeChild(menuCursor);
-					gameA.appendChild(menuCursor);
-				break;
+window.onresize = function() {
+	menu.style.fontSize = (menuItems.offsetWidth/28 + 'px');
+}
 
-				case 2:
-					menuCursor.parentNode.removeChild(menuCursor);
-					gameB.appendChild(menuCursor);
-				break;
-
-				case 3:
-					menuCursor.parentNode.removeChild(menuCursor);
-					gameC.appendChild(menuCursor);
-				break;
+document.onkeyup = function(e) {
+	switch (e.key) {
+		case 'ArrowDown':
+			if (selectedGame < 3) {
+				selectedGame++;
+				selectGame(selectedGame);
 			}
-		}
+		break;
 
-
-		function playGame(selectedGame) {
-			alert ('Not released yet');
-			return false;
-		}
-
-		document.onload = showMenu();
-
-		window.onresize = function() {
-			menu.style.fontSize = (menuItems.offsetWidth/28 + 'px');
-			//menuCursor.style.height = (menuCursor.parentNode.offsetWidth/40 + 'px');
-		}
-
-		document.onkeyup = function(e) {
-			switch (e.key) {
-				case 'ArrowDown':
-					if (selectedGame < 3) {
-						selectedGame++;
-						selectGame(selectedGame);
-					}
-				break;
-
-				case 'ArrowUp':
-					if (selectedGame > 1) {
-						selectedGame--;
-						selectGame(selectedGame);
-					}
-				break;
-
-				case 'Escape':
-					showMenu();
-				break;
-
-				case 'Enter':
-
-					playGame(selectedGame);
-				break;
+		case 'ArrowUp':
+			if (selectedGame > 1) {
+				selectedGame--;
+				selectGame(selectedGame);
 			}
-		}
+		break;
 
+		case 'Escape':
+			showMenu();
+		break;
+
+		case 'Enter':
+
+			playGame(selectedGame);
+		break;
+	}
+}
+
+/*------------------------*/
+/*-----Directly games-----*/
+/*------------------------*/
 	</script>
 
 	<noscript>JavaScript is disabled in your browser. The game is impossible.</noscript>

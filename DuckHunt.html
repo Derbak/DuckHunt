@@ -472,7 +472,6 @@ function showMenu() {
 	menuFooter.appendChild(menuFooterCopy);
 
 	menu.style.fontSize = (menuItems.offsetWidth/28 + 'px');
-	console.log('1 '+selectedGame);
 	selectGame(selectedGame);
 }
 
@@ -481,7 +480,6 @@ function showMenu() {
 /*------------------------*/
 
 function selectGame(selectedGame) {
-	console.log('2 '+selectedGame);
 	var menuCursor = document.getElementById('menuCursor');
 	var gameA = document.getElementById('gameA');
 	var gameB = document.getElementById('gameB');

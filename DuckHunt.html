@@ -32,6 +32,11 @@
 			align-items: start;
 		}
 
+		#gameA, #gameB, #gameC {
+			position: relative;
+			height: 100%;
+		}
+
 		#gameA::before {
 			content: "GAME A";
 			position: absolute;
@@ -72,6 +77,37 @@
 			position: absolute;
 			left: 59%;
 			transform: scaleX(1.4);
+		}
+
+		#menuCursor {
+			position: absolute;
+			top: 18%;
+			left: 20%;
+			width: 2.8%;
+			height: 27%;
+			background: #fff;
+		}
+
+		#menuCursor::before {
+			content: "";
+			top: 0;
+			left: 0;
+			width: 25%;
+			height: 33%;
+			position: absolute;
+			background: #000;
+		}
+
+		#menuCursor::after {
+			content: "";
+			top: -100%;
+			left: 30%;
+			width: 120%;
+			height: 100%;
+			position: absolute;
+			background: #000;
+			transform-origin: 0 100%;
+			transform: rotate(45deg);
 		}
 
 		#menuFooter {
@@ -350,10 +386,12 @@
 
 		var score = 0;
 		var topScore = (score > topScore) ? score : 12000;
+		var selectedGame = 1;
 
 		var screen = document.body.insertBefore(document.createElement('div'), document.body.firstChild);
 		screen.id = 'screen';
 
+//Show Menu (Reset)
 		function showMenu(){
 			screen.innerHTML = '';
 
@@ -410,6 +448,10 @@
 			gameC.id = 'gameC';
 			menuItems.appendChild(gameC);
 
+			var menuCursor = document.createElement('div');
+			menuCursor.id = 'menuCursor';
+			gameA.appendChild(menuCursor);
+
 			//Render footer
 			menu.appendChild(menuFooter);
 
@@ -422,31 +464,73 @@
 			menuFooterCopy.id = 'menuFooterCopy';
 			menuFooter.appendChild(menuFooterCopy);
 
-
 			menu.style.fontSize = (menuItems.offsetWidth/28 + 'px');
+		}
 
-			var selectedGame = 1;
+//Select Game
+		function selectGame(selectedGame) {
 
+			var menuCursor = document.getElementById('menuCursor');
+			var gameA = document.getElementById('gameA');
+			var gameB = document.getElementById('gameB');
+			var gameC = document.getElementById('gameC');
 			switch (selectedGame) {
 				case 1:
-
+				gameA.appendChild(menuCursor);
+					menuCursor.parentNode.removeChild(menuCursor);
+					gameA.appendChild(menuCursor);
 				break;
 
 				case 2:
-
+					menuCursor.parentNode.removeChild(menuCursor);
+					gameB.appendChild(menuCursor);
 				break;
-				case 3:
 
+				case 3:
+					menuCursor.parentNode.removeChild(menuCursor);
+					gameC.appendChild(menuCursor);
 				break;
 			}
 		}
 
 
+		function playGame(selectedGame) {
+			alert ('Not released yet');
+			return false;
+		}
 
 		document.onload = showMenu();
 
-		window.onresize = function () {
+		window.onresize = function() {
 			menu.style.fontSize = (menuItems.offsetWidth/28 + 'px');
+			//menuCursor.style.height = (menuCursor.parentNode.offsetWidth/40 + 'px');
+		}
+
+		document.onkeyup = function(e) {
+			switch (e.key) {
+				case 'ArrowDown':
+					if (selectedGame < 3) {
+						selectedGame++;
+						selectGame(selectedGame);
+					}
+				break;
+
+				case 'ArrowUp':
+					if (selectedGame > 1) {
+						selectedGame--;
+						selectGame(selectedGame);
+					}
+				break;
+
+				case 'Escape':
+					showMenu();
+				break;
+
+				case 'Enter':
+
+					playGame(selectedGame);
+				break;
+			}
 		}
 
 	</script>

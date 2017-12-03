@@ -393,15 +393,19 @@
 			//Render Menu Items
 			menu.appendChild(menuItems);
 
-			var gameType = ['A', 'B', 'C'];
-			for (i=0; i < gameType.length; i++) {
-				var gameListElement = document.createElement('div');
-				gameListElement.id = 'game' + gameType[i];
-				menuItems.appendChild(gameListElement);
-			}
+			gameA = document.createElement('div');
+			gameA.id = 'gameA';
+			menuItems.appendChild(gameA);
+
+			gameB = document.createElement('div');
+			gameB.id = 'gameB';
+			menuItems.appendChild(gameB);
+
+			gameC = document.createElement('div');
+			gameC.id = 'gameC';
+			menuItems.appendChild(gameC);
 
 			//Render footer
-
 			menu.appendChild(menuFooter);
 
 			var menuFooterScore = document.createElement('div');

@@ -33,6 +33,7 @@
 		}
 
 		#gameA, #gameB, #gameC {
+			cursor: pointer;
 			position: relative;
 			height: 100%;
 		}
@@ -473,6 +474,8 @@ function showMenu() {
 
 	menu.style.fontSize = (menuItems.offsetWidth/28 + 'px');
 	selectGame(selectedGame);
+	currentLocation = 'menu';
+	return currentLocation;
 }
 
 /*------------------------*/
@@ -500,6 +503,7 @@ function selectGame(selectedGame) {
 			gameC.appendChild(menuCursor);
 		break;
 	}
+	return selectedGame;
 }
 
 function playGame(selectedGame) {
@@ -546,6 +550,28 @@ document.onkeyup = function(e) {
 	}
 }
 
+if (currentLocation == 'menu') {
+	document.getElementById('gameA').onmouseover = function() {
+		console.log ('onMouseOver gameA');
+		selectedGame = 1;
+		selectGame(selectedGame);
+		return selectedGame;
+	}
+
+	document.getElementById('gameB').onmouseover = function() {
+		console.log ('onMouseOver gameB');
+		selectedGame = 2;
+		selectGame(selectedGame);
+		return selectedGame;
+	}
+
+	document.getElementById('gameC').onmouseover = function() {
+		console.log ('onMouseOver gameC');
+		selectedGame = 3;
+		selectGame(selectedGame);
+		return selectedGame;
+	}
+}
 /*------------------------*/
 /*-----Directly games-----*/
 /*------------------------*/

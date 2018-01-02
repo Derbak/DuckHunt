@@ -474,6 +474,7 @@ function showMenu() {
 
 	menu.style.fontSize = (menuItems.offsetWidth/28 + 'px');
 	selectGame(selectedGame);
+	menuMouseEvent();
 	currentLocation = 'menu';
 	return currentLocation;
 }
@@ -507,9 +508,9 @@ function selectGame(selectedGame) {
 }
 
 function playGame(selectedGame) {
-	screen.innerHTML = '';
-	setTimeout(alert ('Not released yet #' + selectedGame), 2000);
-	showMenu();
+	screen.innerHTML = '<button onclick="showMenu()">Not released yet</button>';
+	currentLocation = 'game';
+	return currentLocation;
 }
 /*------------------------*/
 /*-----Event handling-----*/
@@ -525,14 +526,14 @@ window.onresize = function() {
 document.onkeyup = function(e) {
 	switch (e.key) {
 		case 'ArrowDown':
-			if (selectedGame < 3) {
+			if (currentLocation == 'menu' && selectedGame < 3) {
 				selectedGame++;
 				selectGame(selectedGame);
 			}
 		break;
 
 		case 'ArrowUp':
-			if (selectedGame > 1) {
+			if (currentLocation == 'menu' && selectedGame > 1) {
 				selectedGame--;
 				selectGame(selectedGame);
 			}
@@ -544,32 +545,46 @@ document.onkeyup = function(e) {
 		break;
 
 		case 'Enter':
-
-			playGame(selectedGame);
+			if (currentLocation == 'menu') {
+				playGame(selectedGame);
+			}
 		break;
 	}
 }
 
-if (currentLocation == 'menu') {
+function menuMouseEvent() {
+
 	document.getElementById('gameA').onmouseover = function() {
-		console.log ('onMouseOver gameA');
 		selectedGame = 1;
 		selectGame(selectedGame);
 		return selectedGame;
 	}
 
 	document.getElementById('gameB').onmouseover = function() {
-		console.log ('onMouseOver gameB');
 		selectedGame = 2;
 		selectGame(selectedGame);
 		return selectedGame;
 	}
 
 	document.getElementById('gameC').onmouseover = function() {
-		console.log ('onMouseOver gameC');
 		selectedGame = 3;
 		selectGame(selectedGame);
 		return selectedGame;
+	}
+
+	document.getElementById('gameA').onclick = function() {
+		selectedGame = 1;
+		playGame(selectedGame);
+	}
+
+	document.getElementById('gameB').onclick = function() {
+		selectedGame = 2;
+		playGame(selectedGame);
+	}
+
+	document.getElementById('gameC').onclick = function() {
+		selectedGame = 3;
+		playGame(selectedGame);
 	}
 }
 /*------------------------*/

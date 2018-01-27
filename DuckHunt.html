@@ -11,6 +11,15 @@
 		text-align: center;
 		}
 
+		#screen {
+			width: 120vh;
+			height: 67.5vw;
+			max-width: 90vw;
+			max-height: 90vh;
+			margin: 5vh auto;
+		}
+
+/*Main Menu*/
 		#menu {
 			display: grid;
 			grid-template-columns: 100%;
@@ -371,14 +380,43 @@
 			width: 95%;
 			height: 16%;
 		}
-
-		#screen {
-			width: 120vh;
-			height: 67.5vw;
-			max-width: 90vw;
-			max-height: 90vh;
-			margin: 5vh auto;
+/*Test Chamber*/
+		#testChamberMenu {
+			display: grid;
+			grid-template-columns: 1fr;
+			grid-template-rows: 20% 1fr;
+			width: 100%;
+			height: 20%;
+			border: solid 1px white;
 		}
+
+		#testChamberMenuTopBar {
+			display: grid;
+			grid-template-columns: repeat(3, 25%);
+			grid-template-rows: 1fr;
+			flex-wrap: nowrap;
+			border: solid 1px white;
+		}
+
+		.testChamberMenuTopBarItem {
+			display: inline-grid;
+			color: #dadada;
+			border: solid 1px blue;
+		}
+
+		#testChamberMenuTopBarItemBackground::before {
+			display: inline-block;
+			content: "Background";
+		}
+
+		#testChamberMenuTopBarItemInterface::before {
+			content: "Interface";
+		}
+
+		#testChamberMenuTopBarItemObjects::before {
+			content: "Objects";
+		}
+
 	</style>
 </head>
 
@@ -444,19 +482,19 @@ function showMenu() {
 	//Render Menu Items
 	menu.appendChild(menuItems);
 
-	gameA = document.createElement('div');
+	var gameA = document.createElement('div');
 	gameA.id = 'gameA';
 	menuItems.appendChild(gameA);
 
-	gameB = document.createElement('div');
+	var gameB = document.createElement('div');
 	gameB.id = 'gameB';
 	menuItems.appendChild(gameB);
 
-	gameC = document.createElement('div');
+	var gameC = document.createElement('div');
 	gameC.id = 'gameC';
 	menuItems.appendChild(gameC);
 
-	menuCursor = document.createElement('div');
+	var menuCursor = document.createElement('div');
 	menuCursor.id = 'menuCursor';
 	gameA.appendChild(menuCursor);
 
@@ -476,6 +514,36 @@ function showMenu() {
 	selectGame(selectedGame);
 	menuMouseEvent();
 	currentLocation = 'menu';
+	return currentLocation;
+}
+
+function showTestChamber() {
+	screen.innerHTML = '';
+
+	var testChamberMenu = document.createElement('div');
+	testChamberMenu.id = 'testChamberMenu';
+	screen.appendChild(testChamberMenu);
+
+	var testChamberMenuTopBar = document.createElement('div');
+	testChamberMenuTopBar.id = 'testChamberMenuTopBar';
+	testChamberMenu.appendChild(testChamberMenuTopBar);
+
+	var testChamberMenuTopBarItemBackground = document.createElement('div');
+	testChamberMenuTopBarItemBackground.id = 'testChamberMenuTopBarItemBackground';
+	testChamberMenuTopBarItemBackground.className = 'testChamberMenuTopBarItem';
+	testChamberMenuTopBar.appendChild(testChamberMenuTopBarItemBackground);
+
+	var testChamberMenuTopBarItemInterface = document.createElement('div');
+	testChamberMenuTopBarItemInterface.id = 'testChamberMenuTopBarItemInterface';
+	testChamberMenuTopBarItemInterface.className = 'testChamberMenuTopBarItem';
+	testChamberMenuTopBar.appendChild(testChamberMenuTopBarItemInterface);
+
+	var testChamberMenuTopBarItemObjects = document.createElement('div');
+	testChamberMenuTopBarItemObjects.id = 'testChamberMenuTopBarItemObjects';
+	testChamberMenuTopBarItemObjects.className = 'testChamberMenuTopBarItem';
+	testChamberMenuTopBar.appendChild(testChamberMenuTopBarItemObjects);
+
+	currentLocation = 'testChamber';
 	return currentLocation;
 }
 
@@ -512,6 +580,7 @@ function playGame(selectedGame) {
 	currentLocation = 'game';
 	return currentLocation;
 }
+
 /*------------------------*/
 /*-----Event handling-----*/
 /*------------------------*/
@@ -520,11 +589,13 @@ document.onload = showMenu();
 
 
 window.onresize = function() {
-	menu.style.fontSize = (menuItems.offsetWidth/28 + 'px');
+	if (currentLocation == 'menu') {
+		menu.style.fontSize = (menuItems.offsetWidth/28 + 'px');
+	}
 }
 
 document.onkeyup = function(e) {
-	switch (e.key) {
+	switch (e.code) {
 		case 'ArrowDown':
 			if (currentLocation == 'menu' && selectedGame < 3) {
 				selectedGame++;
@@ -548,6 +619,12 @@ document.onkeyup = function(e) {
 			if (currentLocation == 'menu') {
 				playGame(selectedGame);
 			}
+		break;
+
+		case 'Backquote':
+		if (currentLocation == 'menu') {
+			showTestChamber();
+		}
 		break;
 	}
 }

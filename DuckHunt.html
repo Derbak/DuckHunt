@@ -17,6 +17,7 @@
 			max-width: 90vw;
 			max-height: 90vh;
 			margin: 5vh auto;
+			position: relative;
 		}
 
 /*Main Menu*/
@@ -381,13 +382,41 @@
 			height: 16%;
 		}
 /*Test Chamber*/
+
+		#testChamberOpenClose {
+			position: absolute;
+			width: 3.4vh;
+			height: 2.55vw;
+			max-width: 3.5vw;
+			max-height: 3.5vh;
+			background: transparent;
+			top: 0;
+			right: 0;
+			display: grid;
+			justify-items: center;
+			align-items: center;
+			font-weight: bold;
+			font-family: monospace;
+			color: #dadada;
+			outline: #afafaf ridge 2px;
+			text-shadow: 1px 1px 1px black;
+			-ms-user-select: none;
+			-moz-user-select: none;
+			-webkit-user-select: none;
+			user-select: none;
+		}
+
+		#testChamberOpenClose:active {
+			outline: #afafaf groove 2px;
+		}
+
 		#testChamberMenu {
 			display: grid;
 			grid-template-columns: 1fr;
 			grid-template-rows: 20% 1fr;
 			width: 100%;
 			height: 20%;
-			border: solid 1px white;
+			background: linear-gradient(to bottom, RGBA(255, 255, 255, 0.2) 80%, transparent);
 		}
 
 		#testChamberMenuTopBar {
@@ -395,13 +424,27 @@
 			grid-template-columns: repeat(3, 25%);
 			grid-template-rows: 1fr;
 			flex-wrap: nowrap;
-			border: solid 1px white;
+			background: RGBA(155, 155, 155, 0.5);
 		}
 
 		.testChamberMenuTopBarItem {
 			display: inline-grid;
+			justify-items: center;
+			align-items: center;
 			color: #dadada;
-			border: solid 1px blue;
+			font-variant: small-caps;
+			font-weight: 100;
+			font-stretch: ultra-expanded;
+			font-family: monospace;
+			text-shadow: 1px 1px 1px black;
+		}
+
+		.testChamberMenuTopBarItem:hover {
+			background: linear-gradient(to bottom, RGBA(95, 95, 95, 0.5), RGBA(155, 155, 155, 0.2));
+		}
+
+		.testChamberMenuTopBarItem:active {
+			border-bottom: 1px solid black;
 		}
 
 		#testChamberMenuTopBarItemBackground::before {
@@ -520,6 +563,12 @@ function showMenu() {
 function showTestChamber() {
 	screen.innerHTML = '';
 
+	var testChamberOpenClose = document.createElement('div');
+	testChamberOpenClose.id = 'testChamberOpenClose';
+	screen.appendChild(testChamberOpenClose);
+	testChamberOpenClose.style.fontSize = (testChamberOpenClose.offsetWidth/1.6 + 'px');
+	testChamberOpenClose.innerHTML = '-';
+
 	var testChamberMenu = document.createElement('div');
 	testChamberMenu.id = 'testChamberMenu';
 	screen.appendChild(testChamberMenu);
@@ -527,6 +576,7 @@ function showTestChamber() {
 	var testChamberMenuTopBar = document.createElement('div');
 	testChamberMenuTopBar.id = 'testChamberMenuTopBar';
 	testChamberMenu.appendChild(testChamberMenuTopBar);
+	testChamberMenuTopBar.style.fontSize = (testChamberMenuTopBar.offsetWidth/42 + 'px');
 
 	var testChamberMenuTopBarItemBackground = document.createElement('div');
 	testChamberMenuTopBarItemBackground.id = 'testChamberMenuTopBarItemBackground';
@@ -591,6 +641,11 @@ document.onload = showMenu();
 window.onresize = function() {
 	if (currentLocation == 'menu') {
 		menu.style.fontSize = (menuItems.offsetWidth/28 + 'px');
+	}
+
+	if (currentLocation == 'testChamber') {
+		testChamberMenuTopBar.style.fontSize = (testChamberMenuTopBar.offsetWidth/42 + 'px');
+		testChamberOpen.style.fontSize = (testChamberOpen.offsetWidth/1.6 + 'px');
 	}
 }
 

@@ -130,6 +130,11 @@
 			align-items: center;
 		}
 
+		#menuFooterScore, #menuFooterCopy {
+			position: relative;
+			height: 100%;
+		}
+
 		#menuFooterScore::before {
 			content: attr(data-before);
 			color: #7BE14F;
@@ -416,6 +421,7 @@
 			grid-template-rows: 20% 1fr;
 			width: 100%;
 			height: 20%;
+			color: #dadada;
 			background: linear-gradient(to bottom, RGBA(255, 255, 255, 0.2) 80%, transparent);
 		}
 
@@ -431,7 +437,6 @@
 			display: inline-grid;
 			justify-items: center;
 			align-items: center;
-			color: #dadada;
 			font-variant: small-caps;
 			font-weight: 100;
 			font-stretch: ultra-expanded;
@@ -444,7 +449,7 @@
 		}
 
 		.testChamberMenuTopBarItem:active {
-			border-bottom: 1px solid black;
+			outline: 1px #999 solid;
 		}
 
 		#testChamberMenuTopBarItemBackground::before {
@@ -458,6 +463,10 @@
 
 		#testChamberMenuTopBarItemObjects::before {
 			content: "Objects";
+		}
+
+		#testChamberSubMenu {
+			height: 100%;
 		}
 
 	</style>
@@ -593,6 +602,30 @@ function showTestChamber() {
 	testChamberMenuTopBarItemObjects.className = 'testChamberMenuTopBarItem';
 	testChamberMenuTopBar.appendChild(testChamberMenuTopBarItemObjects);
 
+	var testChamberSubMenu = document.createElement('div');
+	testChamberSubMenu.id = 'testChamberSubMenu';
+	testChamberMenu.appendChild(testChamberSubMenu);
+
+	var testChamberMenuBackground = document.createElement('form');
+	testChamberMenuBackground.id = 'testChamberMenuBackground';
+	testChamberSubMenu.appendChild(testChamberMenuBackground);
+
+	for(var i=0; i < 3; i++) {
+		var rBtn = document.createElement('input');
+		rBtn.type = 'radio';
+		rBtn.id = 'radioShowBackground' + i;
+		rBtn.name = 'radioButtonBackground';
+		var div = document.createElement('div');
+		div.id = 'divShowBackground' + i;
+		div.className = 'testChamberSubMenuBackgroundItem'
+		div.innerHTML += ' showBackground(' + i + ')';
+		div.appendChild(rBtn);
+		testChamberSubMenu.appendChild(div);
+	}
+
+
+
+	testChamberMouseEvent();
 	currentLocation = 'testChamber';
 	return currentLocation;
 }
@@ -644,8 +677,9 @@ window.onresize = function() {
 	}
 
 	if (currentLocation == 'testChamber') {
-		testChamberMenuTopBar.style.fontSize = (testChamberMenuTopBar.offsetWidth/42 + 'px');
-		testChamberOpen.style.fontSize = (testChamberOpen.offsetWidth/1.6 + 'px');
+		testChamberMenuTopBar.style.fontSize = (screen.offsetWidth/42 + 'px');
+		testChamberOpenClose.style.fontSize = (testChamberOpenClose.offsetWidth/1.6 + 'px');
+
 	}
 }
 
@@ -686,39 +720,51 @@ document.onkeyup = function(e) {
 
 function menuMouseEvent() {
 
-	document.getElementById('gameA').onmouseover = function() {
+	gameA.onmouseover = function() {
 		selectedGame = 1;
 		selectGame(selectedGame);
 		return selectedGame;
 	}
 
-	document.getElementById('gameB').onmouseover = function() {
+	gameB.onmouseover = function() {
 		selectedGame = 2;
 		selectGame(selectedGame);
 		return selectedGame;
 	}
 
-	document.getElementById('gameC').onmouseover = function() {
+	gameC.onmouseover = function() {
 		selectedGame = 3;
 		selectGame(selectedGame);
 		return selectedGame;
 	}
 
-	document.getElementById('gameA').onclick = function() {
+	gameA.onclick = function() {
 		selectedGame = 1;
 		playGame(selectedGame);
 	}
 
-	document.getElementById('gameB').onclick = function() {
+	gameB.onclick = function() {
 		selectedGame = 2;
 		playGame(selectedGame);
 	}
 
-	document.getElementById('gameC').onclick = function() {
+	gameC.onclick = function() {
 		selectedGame = 3;
 		playGame(selectedGame);
 	}
 }
+
+function testChamberMouseEvent() {
+
+	testChamberOpenClose.onclick = function() {
+		testChamberOpenClose.innerHTML == '-' ? testChamberOpenClose.innerHTML = '+' : testChamberOpenClose.innerHTML = '-';
+		testChamberMenu.style.display == 'none' ? testChamberMenu.style.display = 'block' : testChamberMenu.style.display = 'none';
+	}
+
+}
+
+
+
 /*------------------------*/
 /*-----Directly games-----*/
 /*------------------------*/
